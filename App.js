@@ -4,19 +4,17 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Provider} from 'react-redux';
 import {store} from './src/store/store';
-const stack = createNativeStackNavigator();
 
-const AppNavigation = () => {
-  <NavigationContainer>
-    <stack.Navigator>
-      <stack.Screen name="Home" component={Home} />
-    </stack.Navigator>
-  </NavigationContainer>;
-};
+const Stack = createNativeStackNavigator();
+
 const App = () => {
   return (
     <Provider store={store}>
-      <AppNavigation />;
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{headerShown: false}}>
+          <Stack.Screen name="Home" component={Home} />
+        </Stack.Navigator>
+      </NavigationContainer>
     </Provider>
   );
 };
