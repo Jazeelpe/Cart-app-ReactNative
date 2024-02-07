@@ -8,23 +8,19 @@ const cartSlice = createSlice({
   },
   reducers: {
     ADDITEM: (state, action) => {
-      const newobj = {
-        id: action.payload.id,
-        image: action.payload.image,
-        name: action.payload.name,
-        brand: action.payload.brand,
-        price: action.payload.price,
-        qty: action.payload.qty,
-      };
-
-      if (state.cartItems.length === 0) {
-        state.cartItems.push(newobj);
-      } else
-        state.cartItems.map(item => {
-          item.id === action.payload.id
-            ? (item.qty = item.qty + 1)
-            : state.cartItems.push(newobj);
-        });
+      let itemInside = false;
+      state.cartItems.forEach(item => {
+        if (item.id === action.payload.id) {
+           itemInside = true;
+        }
+      });
+      if (itemInside === false) {
+        const updated = {...action.payload, qty: action.payload.qty + 1};
+        state.cartItems.push(updated);
+      } else {
+       console.log("my"+state.cartItems)
+        
+      }
     },
     PRODUCTLIST: (state, action) => {
       state.products.push(action.payload);

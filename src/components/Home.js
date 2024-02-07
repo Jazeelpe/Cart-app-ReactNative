@@ -19,7 +19,7 @@ const Home = () => {
   const handleAdditem = item => {
     const newdata = list.map(data => {
       if (data.id === item.id) {
-        data.qty = data.qty + 1;
+        data.qty = data.qty ++;
         return data
       } else return data;
     });
